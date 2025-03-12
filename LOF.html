@@ -469,51 +469,51 @@ Misalkan data berikut:</p></li>
 <td><p>3.0</p></td>
 </tr>
 <tr class="row-even"><td><p>9</p></td>
-<td><p>1.5</p></td>
-<td><p>6.0</p></td>
-</tr>
-<tr class="row-odd"><td><p>10</p></td>
 <td><p>4.5</p></td>
 <td><p>5.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>20.0</p></td>
+<td><p>25.0</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>Kita akan hitung LOF untuk <strong>titik 3</strong> (3.3, 3.0).</p>
+<p>Kita akan hitung LOF untuk <strong>titik 10</strong> (3.3, 3.0).</p>
 <ol class="arabic simple" start="2">
 <li><p><strong>Hitung Jarak Euclidean</strong>:<br />
-Jarak antara titik 3 dan titik lainnya:</p>
+Jarak antara titik 10 dan titik lainnya:</p>
 <ul class="simple">
-<li><p>Titik 3 ke Titik 1:  2.15</p></li>
-<li><p>Titik 3 ke Titik 2:  1.70</p></li>
-<li><p>Titik 3 ke Titik 4:  1.08</p></li>
-<li><p>Titik 3 ke Titik 5:  2.38</p></li>
-<li><p>Titik 3 ke Titik 6:  3.16</p></li>
-<li><p>Titik 3 ke Titik 7:  4.24</p></li>
-<li><p>Titik 3 ke Titik 8:  4.70</p></li>
-<li><p>Titik 3 ke Titik 9:  3.60</p></li>
-<li><p>Titik 3 ke Titik 10: 2.78</p></li>
+<li><p>Titik 10 ke Titik 1:  28.36</p></li>
+<li><p>Titik 10 ke Titik 2:  30.29</p></li>
+<li><p>Titik 10 ke Titik 3:  27.62</p></li>
+<li><p>Titik 10 ke Titik 4:  28.48</p></li>
+<li><p>Titik 10 ke Titik 5:  26.09</p></li>
+<li><p>Titik 10 ke Titik 6:  30.40</p></li>
+<li><p>Titik 10 ke Titik 7:  24.78</p></li>
+<li><p>Titik 10 ke Titik 8:  25.54</p></li>
+<li><p>Titik 10 ke Titik 9:  25.01</p></li>
 </ul>
 </li>
 <li><p><strong>Tentukan k-Tetangga Terdekat</strong> (k=2):<br />
-Titik 3 memiliki dua tetangga terdekat: titik 2 dan titik 4.</p></li>
+Titik 10 memiliki dua tetangga terdekat: titik 7 dan titik 9.</p></li>
 <li><p><strong>Hitung Reachability Distance</strong>:<br />
-Reachability distance antara titik 3 dan tetangga:</p>
+Reachability distance antara titik 10 dan tetangga:</p>
 <ul class="simple">
-<li><p>Titik 3 ke Titik 2: 1.92</p></li>
-<li><p>Titik 3 ke Titik 4: 1.92</p></li>
+<li><p>Titik 10 ke Titik 7: 24.78</p></li>
+<li><p>Titik 10 ke Titik 9: 25.01</p></li>
 </ul>
 </li>
 <li><p><strong>Hitung Local Reachability Density (LRD)</strong>:<br />
 <span class="math notranslate nohighlight">\(
-\text{LRD}(3) = \frac{1}{\frac{1}{2} \times (1.92 + 1.92)} = 0.52
+\text{LRD}(10) = \frac{1}{\frac{1}{2} \times (24.78 + 25.01)} = 0.040
 \)</span></p></li>
 <li><p><strong>Hitung LOF</strong>:<br />
 <span class="math notranslate nohighlight">\(
-\text{LOF}(3) = \frac{0.52}{0.52} + \frac{0.52}{0.52} = 2
+ \text{LOF}(10) = \frac{1}{2} \left(\frac{0.5}{0.040} + \frac{0.5}{0.040} \right) = 12.5
 \)</span></p></li>
 <li><p><strong>Interpretasi</strong>:<br />
-Karena <strong>LOF = 2</strong> (lebih besar dari 1), titik 3 dianggap <strong>outlier</strong>.</p></li>
+Karena <strong>LOF = 12.5</strong> (lebih besar dari 1), titik 10 dianggap <strong>outlier</strong>.</p></li>
 </ol>
 <p>LOF mengukur seberapa terisolasi titik dibandingkan tetangganya. Titik dengan LOF lebih besar dari 1 dianggap outlier.</p>
 </section>
@@ -525,10 +525,10 @@ Karena <strong>LOF = 2</strong> (lebih besar dari 1), titik 3 dianggap <strong>o
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">LocalOutlierFactor</span>
 
-<span class="c1"># Dataset contoh</span>
+<span class="c1"># Dataset contoh (outlier hanya di titik ke-10)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;Feature1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mf">6.1</span><span class="p">,</span> <span class="mf">7.3</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">],</span>
-    <span class="s1">&#39;Feature2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">]</span>
+    <span class="s1">&#39;Feature1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mf">6.1</span><span class="p">,</span> <span class="mf">7.3</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">],</span>
+    <span class="s1">&#39;Feature2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">3.8</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">]</span>
 <span class="p">}</span>
 
 <span class="c1"># Membuat DataFrame</span>
@@ -544,11 +544,12 @@ Karena <strong>LOF = 2</strong> (lebih besar dari 1), titik 3 dianggap <strong>o
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;LOF Label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lof_labels</span>
 
 <span class="c1"># Menampilkan hasil</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dataset dengan LOF Label:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 
 <span class="c1"># Menampilkan jumlah outlier</span>
 <span class="n">num_outliers</span> <span class="o">=</span> <span class="p">(</span><span class="n">lof_labels</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Jumlah outlier: </span><span class="si">{</span><span class="n">num_outliers</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Jumlah outlier terdeteksi: </span><span class="si">{</span><span class="n">num_outliers</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Menampilkan data outlier</span>
 <span class="n">outliers</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;LOF Label&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -558,7 +559,8 @@ Karena <strong>LOF = 2</strong> (lebih besar dari 1), titik 3 dianggap <strong>o
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   Feature1  Feature2  LOF Label
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset dengan LOF Label:
+   Feature1  Feature2  LOF Label
 0       1.2       3.5          1
 1       2.1       1.8          1
 2       3.3       3.0          1
@@ -567,15 +569,14 @@ Karena <strong>LOF = 2</strong> (lebih besar dari 1), titik 3 dianggap <strong>o
 5       6.1       1.5          1
 6       7.3       4.5          1
 7       8.0       3.0          1
-8       1.5       6.0          1
-9       4.5       5.5          1
+8       4.5       5.5          1
+9      20.0      25.0         -1
 
-Jumlah outlier: 0
+Jumlah outlier terdeteksi: 1
 
 Data Outlier:
-Empty DataFrame
-Columns: [Feature1, Feature2, LOF Label]
-Index: []
+   Feature1  Feature2  LOF Label
+9      20.0      25.0         -1
 </pre></div>
 </div>
 </div>
