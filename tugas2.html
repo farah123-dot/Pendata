@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Tugas 2 &#8212; My sample book</title>
+    <title>Outlier Deteksi &#8212; My sample book</title>
   
   
   
@@ -183,7 +183,7 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="tugas1.html">Tugas 1</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Tugas 2</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Outlier Deteksi</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="KNN.html"><strong>Deteksi Outlier dengan K-Nearest Neighbors (KNN) dalam Data Understanding</strong></a></li>
 <li class="toctree-l2"><a class="reference internal" href="LOF.html"><strong>Deteksi Outlier dengan metode Local Outlier Factor (LOF) dalam Data Understanding</strong></a></li>
 </ul>
@@ -373,7 +373,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Tugas 2</h1>
+    <h1>Outlier Deteksi</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -383,7 +383,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outlier-deteksi">Outlier Deteksi</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-outlier-deteksi">Pengertian Outlier  Deteksi</a></li>
 </ul>
             </nav>
@@ -396,11 +395,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="tugas-2">
-<h1>Tugas 2<a class="headerlink" href="#tugas-2" title="Link to this heading">#</a></h1>
-<section id="outlier-deteksi">
-<h2>Outlier Deteksi<a class="headerlink" href="#outlier-deteksi" title="Link to this heading">#</a></h2>
-</section>
+  <section id="outlier-deteksi">
+<h1>Outlier Deteksi<a class="headerlink" href="#outlier-deteksi" title="Link to this heading">#</a></h1>
 <section id="pengertian-outlier-deteksi">
 <h2>Pengertian Outlier  Deteksi<a class="headerlink" href="#pengertian-outlier-deteksi" title="Link to this heading">#</a></h2>
 <p>Outlier Deteksi adalah proses mencari dan mengidentifikasi data yang berada dari data lainnya. Data yang berbeda ini disebut outlier. Outlier perlu dideteksi disebabkan oleh kesalahan pengukuran atau pengumpulan data, dapat menjadi petunjuk adanya gangguan sistem, penyalahgunaan sistem, atau fakta-fakta baru, dapat mempengaruhi hasil analisis data secara keseluruhan.</p>
@@ -863,92 +859,6 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
-<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">LocalOutlierFactor</span>
-
-<span class="c1"># Load dataset</span>
-<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
-
-<span class="c1"># Ganti nama kolom agar sesuai dengan permintaan</span>
-<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal_width&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_width&#39;</span><span class="p">]</span>
-
-<span class="c1"># Pastikan df_merged didefinisikan (jika memang perlu merging, lakukan di sini)</span>
-<span class="n">df_merged</span> <span class="o">=</span> <span class="n">df</span>  <span class="c1"># Jika tidak ada proses merge, gunakan df langsung</span>
-
-<span class="c1"># Ambil fitur yang diminta</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">df_merged</span><span class="p">[[</span><span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_width&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal_width&#39;</span><span class="p">]]</span>
-
-<span class="c1"># Inisialisasi model Local Outlier Factor</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">LocalOutlierFactor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="c1"># Prediksi anomali/outlier</span>
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-<span class="c1"># Cetak hasil prediksi</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[ 1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1 -1  1 -1  1
- -1  1  1  1  1  1  1 -1  1  1  1 -1  1  1  1  1  1 -1  1  1  1  1  1  1
-  1  1  1  1  1  1  1  1  1  1  1 -1  1 -1 -1  1  1  1  1  1  1  1  1  1
-  1  1  1  1  1  1  1 -1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1
-  1  1  1  1  1  1  1  1  1  1 -1  1 -1 -1  1  1  1  1 -1  1  1  1  1  1
-  1  1  1  1  1  1  1  1  1  1  1  1  1  1 -1  1  1  1  1  1  1  1  1  1
-  1  1  1  1  1  1]
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="c1"># Load dataset</span>
-<span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
-
-<span class="c1"># Buat DataFrame</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
-
-<span class="c1"># Ganti nama kolom agar sesuai dengan yang diminta</span>
-<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal_width&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_width&#39;</span><span class="p">]</span>
-
-<span class="c1"># Ambil semua data</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;petal_width&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="s1">&#39;sepal_width&#39;</span><span class="p">]]</span>
-
-<span class="c1"># Cek jumlah data</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1"># Output: (150, 4)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(150, 4)
-     petal_length  petal_width  sepal_length  sepal_width
-0             1.4          0.2           5.1          3.5
-1             1.4          0.2           4.9          3.0
-2             1.3          0.2           4.7          3.2
-3             1.5          0.2           4.6          3.1
-4             1.4          0.2           5.0          3.6
-..            ...          ...           ...          ...
-145           5.2          2.3           6.7          3.0
-146           5.0          1.9           6.3          2.5
-147           5.2          2.0           6.5          3.0
-148           5.4          2.3           6.2          3.4
-149           5.1          1.8           5.9          3.0
-
-[150 rows x 4 columns]
-</pre></div>
-</div>
-</div>
-</div>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -1018,7 +928,6 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#outlier-deteksi">Outlier Deteksi</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-outlier-deteksi">Pengertian Outlier  Deteksi</a></li>
 </ul>
   </nav></div>
