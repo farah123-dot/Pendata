@@ -678,6 +678,7 @@ document.write(`
 <img alt="_images/e6060a411ce40a2528219698907e8bd9cceafb4a1436d58154b431a679b50a82.png" src="_images/e6060a411ce40a2528219698907e8bd9cceafb4a1436d58154b431a679b50a82.png" />
 </div>
 </div>
+<p>Kode diatas berfungsi untuk mendeteksi outlier dari data yang diperoleh dengan menggabungkan dua database, yaitu PostgreSQL dan MySQL. Data dari kedua sumber tersebut diambil dan digabungkan berdasarkan kolom id dan class, kemudian difokuskan pada fitur numerik seperti panjang dan lebar sepal serta petal. Setelah data digabungkan, dilakukan perhitungan jarak Euclidean antara setiap baris data dengan satu titik referensi, yaitu baris terakhir dari dataset. Berdasarkan jarak yang dihitung, ditentukan ambang batas outlier menggunakan persentil ke-93.5. Data yang memiliki jarak melebihi ambang batas tersebut dianggap sebagai outlier. Seluruh hasil analisis ini ditampilkan dalam tabel lengkap yang mencakup label outlier, dan divisualisasikan dalam bentuk scatter plot agar memudahkan dalam memahami persebaran data dan mengenali data yang menyimpang. Dengan demikian, kode ini berperan sebagai metode yang efektif untuk menemukan data yang berbeda secara signifikan dari pola mayoritas data lainnya.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hitung total outlier</span>
@@ -692,6 +693,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>program ini bertujuan untuk menghitung jumlah total data yang terdeteksi sebagai outlier berdasarkan hasil analisis sebelumnya. Dengan memanfaatkan kolom “outlier” yang telah berisi nilai True untuk data yang dianggap outlier dan False untuk data normal, kode ini menjumlahkan seluruh nilai True menggunakan fungsi .sum(), sehingga menghasilkan total data yang tergolong outlier.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Urutkan data berdasarkan jarak dari terkecil ke terbesar</span>
@@ -859,6 +861,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Kode diatas digunakan untuk mengurutkan data berdasarkan nilai jarak (distance) dari titik referensi, mulai dari jarak terkecil hingga terbesar.</p>
 </section>
 <div class="toctree-wrapper compound">
 </div>
