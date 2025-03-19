@@ -384,6 +384,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knn-bisa-digunakan-untuk-deteksi-outlier">1. KNN bisa digunakan untuk deteksi outlier</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-deteksi-outlier-dengan-knn">2. Langkah-Langkah Deteksi Outlier dengan KNN</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memisahkan-outlier-dari-data"><strong>Memisahkan outlier dari data</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-akurasi-dari-data"><strong>Menghitung Akurasi dari data</strong></a></li>
 </ul>
             </nav>
         </div>
@@ -1101,7 +1102,9 @@ Data tidak outlier :
 <p>Kode ini digunakan untuk mendeteksi dan memisahkan outlier dari dataset yang berasal dari dua sumber basis data, yaitu PostgreSQL dan MySQL. Proses dimulai dengan menghubungkan ke kedua basis data menggunakan pustaka psycopg2 untuk PostgreSQL dan pymysql untuk MySQL. Setelah koneksi berhasil, kode mengeksekusi query untuk mengambil seluruh data dari tabel “iris_postgresql” dan “irismysql”, lalu mengonversinya menjadi DataFrame menggunakan pustaka pandas.</p>
 <p>Selanjutnya, kedua dataset tersebut digabungkan berdasarkan kolom “id” dan “class” menggunakan inner join, sehingga hanya data yang ada di kedua tabel yang dipertahankan. Setelah penggabungan, hanya fitur numerik seperti “petal_length”, “petal_width”, “sepal_length”, dan “sepal_width” yang digunakan untuk analisis outlier. Untuk mendeteksi outlier, kode menerapkan model Local Outlier Factor (LOF) dari pustaka scikit-learn, dengan parameter n_neighbors=90, yang berarti setiap titik data dibandingkan dengan 90 tetangga terdekatnya untuk menentukan apakah data tersebut termasuk outlier atau tidak.</p>
 <p>LOF memberikan label 1 untuk data normal dan -1 untuk data yang dianggap outlier. Hasil deteksi ini kemudian ditambahkan ke dalam DataFrame dengan kolom “outlier_label”, dan jumlah total outlier dihitung berdasarkan jumlah data dengan label -1. Dataset kemudian dipisahkan menjadi dua bagian, yaitu data normal (df_filtered) dan data outlier (outliers). Akhirnya, kode mencetak hasil deteksi outlier, termasuk jumlah total outlier, daftar data yang dikategorikan sebagai outlier, serta data yang tersisa setelah proses pembersihan. Dengan pendekatan ini, dataset menjadi lebih bersih, sehingga mengurangi potensi bias dalam analisis atau pemodelan pembelajaran mesin.</p>
-<p>##<strong>Menghitung Akurasi dari data</strong></p>
+</section>
+<section id="menghitung-akurasi-dari-data">
+<h2><strong>Menghitung Akurasi dari data</strong><a class="headerlink" href="#menghitung-akurasi-dari-data" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">df_merged</span><span class="p">[</span><span class="n">feature_columns</span><span class="p">]</span>
@@ -1250,6 +1253,7 @@ Iris-versicolor       0.88      1.00      0.93         7
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#knn-bisa-digunakan-untuk-deteksi-outlier">1. KNN bisa digunakan untuk deteksi outlier</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-langkah-deteksi-outlier-dengan-knn">2. Langkah-Langkah Deteksi Outlier dengan KNN</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memisahkan-outlier-dari-data"><strong>Memisahkan outlier dari data</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghitung-akurasi-dari-data"><strong>Menghitung Akurasi dari data</strong></a></li>
 </ul>
   </nav></div>
 
