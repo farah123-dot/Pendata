@@ -439,32 +439,6 @@ document.write(`
 <li><p>Kekompakan data dalam satu cluster</p></li>
 <li><p>Jarak antar cluster yang berbeda</p></li>
 </ul>
-<p>Silhouette Analysis mengukur seberapa mirip suatu titik data dengan klasternya sendiri dibandingkan dengan klaster terdekat lainnya. Rumusnya adalah:</p>
-<div class="math notranslate nohighlight">
-\[
-s(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))}
-\]</div>
-<p><strong>Penjelasan Notasi</strong>:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(a(i)\)</span>: Rata-rata jarak dari titik <span class="math notranslate nohighlight">\(i\)</span> ke semua titik lain dalam klaster yang sama (cohesion)</p></li>
-<li><p><span class="math notranslate nohighlight">\(b(i)\)</span>: Rata-rata jarak dari titik <span class="math notranslate nohighlight">\(i\)</span> ke semua titik dalam klaster terdekat yang bukan miliknya (separation)</p></li>
-<li><p><span class="math notranslate nohighlight">\(s(i)\)</span>: Skor silhouette untuk titik <span class="math notranslate nohighlight">\(i\)</span>, dengan nilai antara -1 dan 1</p></li>
-</ul>
-<p>Nilai skor <span class="math notranslate nohighlight">\(s(i)\)</span> ditafsirkan sebagai berikut:</p>
-<ul class="simple">
-<li><p>Jika <span class="math notranslate nohighlight">\(s(i) \approx 1\)</span>, maka titik berada jauh dari klaster lain dan cocok dengan klasternya</p></li>
-<li><p>Jika <span class="math notranslate nohighlight">\(s(i) \approx 0\)</span>, maka titik berada di antara dua klaster</p></li>
-<li><p>Jika <span class="math notranslate nohighlight">\(s(i) \approx -1\)</span>, maka titik bisa jadi salah masuk klaster</p></li>
-</ul>
-<p>Untuk mengevaluasi seluruh hasil clustering, digunakan rata-rata dari semua <span class="math notranslate nohighlight">\(s(i)\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[
-S = \frac{1}{n} \sum_{i=1}^{n} s(i)
-\]</div>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(n\)</span>: Jumlah total data</p></li>
-<li><p><span class="math notranslate nohighlight">\(S\)</span>: Silhouette score rata-rata seluruh data</p></li>
-</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install pymysql
